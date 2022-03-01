@@ -4,7 +4,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "node ./dist/index.ts",
-    "dev": "nodemon ./src/index.ts",
+    "dev": "nodemon --exec npx ts-node ./src/index.ts",
     "build": "tsc -p ."
   },
   "keywords": [],
