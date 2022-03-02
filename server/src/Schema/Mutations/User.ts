@@ -29,7 +29,10 @@ export const UPDATE_PASSWORD = {
     const userPassword = user?.password;
 
     if (oldPassword === userPassword) {
-      return await Users.update({ username: username }, { password: newPassword });
+      return await Users.update(
+        { username: username },
+        { password: newPassword }
+      );
     } else {
       throw new Error("Password do not match");
     }
