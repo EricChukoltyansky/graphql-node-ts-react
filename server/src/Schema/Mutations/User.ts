@@ -1,4 +1,4 @@
-import { GraphQLString } from "graphql";
+import { GraphQLID, GraphQLString } from "graphql";
 import { UserType } from "../TypeDefs/User";
 import { Users } from "../../Entities/Users";
 
@@ -15,3 +15,15 @@ export const CREATE_USER = {
     return args;
   },
 };
+
+export const DELETE_USER = {
+    type: UserType,
+    args: {
+      id: {type: GraphQLID}
+    },
+    async resolve(parent: any, args: any) {
+      const { id } = args;
+      await Users.delete(id)
+      return
+    },
+  };
