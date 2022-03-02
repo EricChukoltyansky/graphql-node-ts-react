@@ -4,11 +4,13 @@ import { BaseEntity, Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
+
   @Column()
   name!: string;
+
   @Column()
   username!: string;
+
   @Column()
   password!: string;
 }
-µ;
