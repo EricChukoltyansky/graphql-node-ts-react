@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import "./App.css";
 
 function App() {
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const client = new ApolloClient({
+    uri: "http://localhost:5000/graphql",
+    cache: new InMemoryCache(),
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <div className="createUser">
+        <input
+          type="text"
+          placeholder="name"
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="username"
+          onChange={(event) => {
+            setUserName(event.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="password"
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+        <button>Create User</button>
+      </div>
+    </ApolloProvider>
   );
 }
 
