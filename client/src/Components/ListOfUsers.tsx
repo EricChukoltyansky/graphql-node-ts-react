@@ -5,9 +5,7 @@ import { useQuery } from "@apollo/client";
 function ListOfUsers() {
   const { data } = useQuery(GET_ALL_USERS);
 
-  if (data) {
-    console.log(data);
-  }
+  const deleteUser = (id: number) => {};
   return (
     <div>
       {data &&
@@ -15,6 +13,7 @@ function ListOfUsers() {
           return (
             <div>
               {user.name} / {user.username}
+              <button onClick={() => deleteUser(user.id)}>Delete User</button>
             </div>
           );
         })}
