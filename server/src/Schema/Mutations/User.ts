@@ -28,11 +28,11 @@ export const UPDATE_PASSWORD = {
   async resolve(parent: any, args: any) {
     const { username, oldPassword, newPassword } = args;
     const user = await Users.findOne({ username: username });
-    const userPassword = user?.password;
-
+    
     if (!user) {
-      throw new Error("Username does not exists");
+        throw new Error("Username does not exists");
     }
+    const userPassword = user?.password;
 
     if (oldPassword === userPassword) {
       await Users.update({ username: username }, { password: newPassword });
